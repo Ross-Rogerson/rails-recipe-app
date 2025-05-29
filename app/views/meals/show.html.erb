@@ -1,0 +1,35 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to meals"), meals_path %>
+  <%= turbo_frame_tag @meal do %>
+    <div class="show__header">
+      <h1>
+        <%= @meal.name %>
+      </h1>
+      <% if current_user == @meal.user %>
+        <div class="show__actions">
+          <%= link_to "Edit",
+                      edit_meal_path,
+                      class: "btn btn--light" %>
+          <%= button_to "Delete",
+                        meal_path(@meal),
+                        method: :delete,
+                        data: { turbo_frame: "_top" },
+                        class: "btn btn--light" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="show__body">
+      <div class="show__meal-subheading">
+        <h4>Meal Nutrition</h4>
+      </div>
+      <div class="show__meal-nutrion-row">
+        <p>Calories: <%= @meal.calculate_nutritional_info %>kcal</p>
+      </div>
+      <div class="show__meal-subheading">
+        <h4>Ingredients</h4>
+      </div>
+      <%= render partial: "meal_ingredient", collection: @meal.meal_ingredients, as: :meal_ingredient %>
+    </div>
+  <% end %>
+</main>

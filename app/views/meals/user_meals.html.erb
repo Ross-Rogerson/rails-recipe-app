@@ -1,0 +1,7 @@
+<%= turbo_stream_from "meals_#{current_user.id}" %>
+<main class="container">
+  <%= render partial: 'users/profile_header' %>
+  <%=  turbo_frame_tag "meals" do %>
+    <%= render @meals %>
+  <% end %>
+</main>

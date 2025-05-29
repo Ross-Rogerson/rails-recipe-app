@@ -1,0 +1,19 @@
+<header class="navbar">
+  <div>
+    <h2 class="navbar__brand"><%= link_to "Food", root_path %></h2>
+  </div>
+  <div class="navbar__buttons">
+    <% if user_signed_in? %>
+      <%= link_to "Grocery Items", grocery_items_path, class: "btn btn--navbar" %>
+      <%= link_to "Ingredients", ingredients_path, class: "btn btn--navbar" %>
+      <%= link_to "Discover", meals_path, class: "btn btn--navbar" %>
+      <%= link_to "Profile", user_meals_path(current_user), class: "btn btn--navbar" %>
+      <%= link_to "Users", users_path, class: "btn btn--navbar" %>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn--navbar" %>
+    <% else %>
+      <%= link_to "Sign in",
+                  new_user_session_path,
+                  class: "btn btn--navbar navbar__right" %>
+    <% end %>
+  </div>
+</header>

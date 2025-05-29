@@ -1,0 +1,68 @@
+.progress-bar {
+  &__step-marker {  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    border: 3px solid var(--color-text-body);
+
+    &--active {
+      border: 3px solid var(--color-secondary);
+      background-color: white;
+      color: var(--color-secondary);
+    }
+
+    &--complete {
+      border: 3px solid var(--color-secondary);
+      background-color: var(--color-secondary);
+      color: white;
+    }
+  }
+
+  &__step-marker-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--space-l);
+  }
+
+  &__step-connector {
+    display: block;
+    height: 1px;
+    width: 50px;
+    border: 0;
+    margin: 0 5px;
+    padding: 0;
+    border-top: 2px solid var(--color-text-body);
+
+    &--complete {
+      border-top: 2px solid var(--color-secondary);
+    }
+  }
+
+  &__step-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 50px;
+  }
+
+  &__step-label {
+    position: absolute;
+    top: -1.5em;
+    font-size: var(--font-size-sm);
+    text-align: center;
+    width: 100px;
+
+    &--active,
+    &--complete {
+      color: var(--color-secondary);
+    }
+  }
+}

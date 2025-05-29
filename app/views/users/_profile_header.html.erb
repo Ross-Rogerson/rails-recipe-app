@@ -1,0 +1,29 @@
+<div class="profile_header">
+  <div class="profile_header__title_div">
+    <h2 class="profile_header__title">
+      <%= @user.name %>
+    </h2>
+    <div>
+      <% unless own_profile?(@user) %>
+        <%= turbo_frame_tag "follow_actions" do %>
+          <% if current_user.following?(@user) %>
+            <%= button_to "Unfollow", unfollow_user_path(@user), 
+                              method: :delete, 
+                              class: "btn btn--primary", 
+                              data: { turbo_frame: "follow_actions" } %>
+          <% else %>
+            <%= button_to "Follow", follow_user_path(@user), 
+                              method: :post, 
+                              class: "btn btn--primary", 
+                              data: { turbo_frame: "follow_actions" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="profile_header__nav">
+    <%= link_to "Profile", user_meals_path(@user), class: "btn btn--navbar" %>
+    <%= link_to "Followers", followers_user_path(@user), class: "btn btn--navbar" %>
+    <%= link_to "Following", following_user_path(@user), class: "btn btn--navbar" %>
+  </div>
+</div>

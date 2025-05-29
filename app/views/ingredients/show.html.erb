@@ -1,0 +1,52 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to ingredients"), ingredients_path %>
+  <div class="show__header">
+    <h1>
+      <%= @ingredient.name %>
+    </h1>
+    <% if current_user == @ingredient.user %>
+      <div class="show__actions">
+        <%= link_to "Edit",
+                    edit_ingredient_path,
+                    class: "btn btn--light" %>
+        <%= button_to "Delete",
+                      ingredient_path(@ingredient),
+                      method: :delete,
+                      class: "btn btn--light" %>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="show__body">
+    <div class="show__attribute">
+      Calories: <%= @ingredient.calories_per_100g %>g
+    </div>
+    <div class="show__attribute">
+      Saturated fats: <%= @ingredient.saturated_fat_per_100g %>g
+    </div>
+    <div class="show__attribute">
+      Unsaturated fats: <%= @ingredient.unsaturated_fat_per_100g %>g
+    </div>
+    <div class="show__attribute">
+      Carbohydrates: <%= @ingredient.carbohydrates_per_100g %>g
+    </div>
+    <div class="show__attribute">
+      Sugars: <%= @ingredient.sugars_per_100g %>g
+    </div>
+    <div class="show__attribute">
+      Fibre: <%= @ingredient.fibre_per_100g %>g
+    </div>
+    <div class="show__attribute">
+      Protein: <%= @ingredient.protein_per_100g %>g
+    </div>
+    <div class="show__attribute">
+      Salt: <%= @ingredient.salt_per_100g %>g
+    </div>
+    <div class="show__attribute">
+      Suitable for vegetarians: <%= @ingredient.vegetarian %>
+    </div>
+    <div class="show__attribute">
+      Category: <%= @ingredient.category.humanize %>
+    </div>
+  </div>
+</main>

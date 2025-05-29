@@ -1,0 +1,9 @@
+
+<% if user_signed_in? %>
+  <footer class="footer">
+    <%= link_to "+",
+                new_meal_path,
+                class: "btn btn--new_meal" %>
+  </footer>
+<% else %>
+<% end %>

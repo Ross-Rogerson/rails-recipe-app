@@ -1,0 +1,78 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-m);
+
+  &__label {
+    abbr[title="required"] {
+      text-decoration: none; 
+      color: var(--color-warning);
+    }
+  }
+
+  &__input {
+    height: 40px;
+    padding: var(--space-xxs) var(--space-xs);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    outline: none;
+    transition: box-shadow 250ms;
+
+    &:focus {
+      box-shadow: 0 0 0 2px var(--color-glint);
+    }
+
+    &--invalid {
+      border-color: var(--color-warning);
+    }
+  }
+  
+  &__page {
+    width: 75%;
+    max-width: 500px;
+    margin-top: var(--space-m);
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    width: 100%;
+    padding-bottom: 5px;
+
+      > *:only-child {
+        margin-right: auto;
+      }
+  }
+
+  &__row-item {
+    width: 195px;
+  }
+
+  &__select {
+    display: block;
+    width: 195px;
+    height: 40px;
+    padding: var(--space-xxs) var(--space-xs);
+    border-radius: var(--border-radius);
+  }
+
+  &__qty {
+    &__fields {
+      display: flex;
+      justify-content: space-between;
+      min-width: 195px;
+      max-width: 195px;
+    }
+
+    &__input {
+      width: 70%;
+    }
+    
+    &__select {
+      width: 29%;
+    }
+  }
+}

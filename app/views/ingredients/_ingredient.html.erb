@@ -1,0 +1,12 @@
+
+  <div class="card">
+    <div class="card__summary">
+      <div class="card__header">
+        <%= link_to ingredient.name, 
+                    ingredient_path(ingredient) %>
+      </div>
+      <div class="card__footer">
+        Posted: <%= formatted_post_date(ingredient.created_at) %>
+      </div>
+    </div>
+  </div>

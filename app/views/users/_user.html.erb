@@ -1,0 +1,9 @@
+<%= turbo_frame_tag user do %>
+  <div class="meal">
+    <div class="meal_summary">
+      <%= link_to user.name, 
+                  user_meals_path(user),
+                  data: { turbo_frame: "_top" } %><br>
+    </div>
+  </div>
+<% end %>

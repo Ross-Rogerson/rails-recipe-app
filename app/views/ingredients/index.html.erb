@@ -1,0 +1,12 @@
+<main class="container">
+  <div class="header">
+    <%= link_to "Create Ingredient",
+                new_ingredient_path,
+                class: "btn btn--secondary" %>
+    <%= link_to "Create Ingredient & Grocery Item",
+                new_with_grocery_item_ingredients_path,
+                class: "btn btn--secondary" %>
+  </div>
+  
+  <%= render @ingredients %>
+</main>

@@ -1,0 +1,70 @@
+<%= simple_form_for grocery_item, html: { class: "grocery_item form" } do |f| %>
+  <% if grocery_item.errors.any? %>
+    <div class="error-message">
+      <%= grocery_item.errors.full_messages.to_sentence.capitalize %>
+    </div>
+  <% end %>
+
+  <div data-grocery_item-target="formPage" class="form__page">
+    <div class="form__row">
+      <div class="simple_form_field form__row-item">
+        <%= f.input :name, 
+            label: "Item name", 
+            input_html: { autofocus: true } %>
+      </div>
+      <div class="simple_form_field form__row-item">
+        <%= f.input :supermarket, 
+            collection: GroceryItem.supermarkets.map{|k, v| [k.humanize, k]}, 
+            input_html: { class: "form__select" }, 
+            prompt: "Please select…" %>
+      </div>
+    </div>
+
+    <div class="form__row">
+      <div class="simple_form_field form__row-item form__qty">
+        <label class="form__label" for="grocery_item_quantity">
+          Quantity <abbr title="required">*</abbr>
+        </label>
+        <div class="form__qty__fields">
+          <%= f.input :quantity, 
+              wrapper: false, 
+              label: false, 
+              input_html: { class: 'form__qty__input' } %>
+          <%= f.input :quantity_unit, 
+              wrapper: false, 
+              label: false, 
+              collection: GroceryItem.quantity_units.map{|k, v| [k, k]}, 
+              input_html: { class: "form__select form__qty__select" }, 
+              include_blank: false, 
+              prompt: "-" %> 
+        </div>
+      </div>
+      <div class="simple_form_field form__row-item">
+        <%= f.input :price, 
+            label: "Price (£)" %>
+      </div>
+    </div>
+    <div class="form__row">
+      <div class="simple_form_field form__row-item">
+        <%= f.input :has_plastic_packaging,
+            collection: [["No", false], ["Yes", true]],
+            input_html: { class: "form__select" },
+            prompt: "Please select…",
+            required: true %>
+      </div>
+      <div class="simple_form_field form__row-item">
+        <%= f.input :ingredient_id, 
+            label: "Ingredient",
+            collection: Ingredient.all,
+            input_html: { class: "form__select" },
+            prompt: "Please select...",
+            required: true %>
+      </div>
+    </div>
+  </div>
+
+  <%= link_to "Cancel", (@grocery_item.persisted? ? grocery_item_path(@grocery_item) : grocery_items_path), class: "btn btn--light" %>
+  <%= f.submit id: "grocery_item_form_submit", 
+      class: "btn btn--secondary",
+      data: { grocery_item_target: "submitBtn" } %>
+<% end %>

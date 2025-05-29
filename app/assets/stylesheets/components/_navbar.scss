@@ -1,0 +1,31 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--space-m);
+  padding: var(--space-s);
+
+  &__brand {
+    font-weight: bold;
+    font-size: var(--font-size-xl);
+    color: var(--color-text-header);
+  }
+
+  &__name {
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: var(--space-s);
+    color: var(--color-text-header);
+  }
+
+  &__right {
+    margin-left: auto;
+  }
+  
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+  }
+}

@@ -1,0 +1,45 @@
+.show {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-s);
+  border-bottom: solid 0.5px var(--color-faint);
+  margin-bottom: var(--space-m);
+  padding: var(--space-xs);
+
+  @include media(tabletAndUp) {
+    padding: var(--space-xs) var(--space-m);
+  }
+
+  &__actions {
+    gap: var(--space-m);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__header {
+    padding: 0 var(--space-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-s);
+    min-width: 100%;
+  }
+
+  &__body {
+    padding: var(--space-m) var(--space-xl);
+  }
+
+  &__meal-subheading {
+    margin-top: var(--space-s);
+  }
+
+  &__meal-ingredient {
+    margin: var(--space-xs);
+  }
+
+  &__meal-nutrion-row {
+    margin: var(--space-xxs);
+  }
+}

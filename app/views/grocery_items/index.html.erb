@@ -1,0 +1,9 @@
+<main class="container">
+  <div class="header">
+    <%= link_to "Create Grocery Item",
+                new_grocery_item_path,
+                class: "btn btn--secondary" %>
+  </div>
+  
+  <%= render @grocery_items %>
+</main>

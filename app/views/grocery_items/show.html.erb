@@ -1,0 +1,36 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to grocery items"), grocery_items_path %>
+  <div class="show__header">
+    <h1>
+      <%= grocery_item_display_name(@grocery_item) %>
+    </h1>
+    <% if current_user == @grocery_item.user %>
+      <div class="show__actions">
+        <%= link_to "Edit",
+                    edit_grocery_item_path,
+                    class: "btn btn--light" %>
+        <%= button_to "Delete",
+                      grocery_item_path(@grocery_item),
+                      method: :delete,
+                      class: "btn btn--light" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="show__body">
+    <div class="show__attribute">
+      Quantity: <%= @grocery_item.quantity %><%= @grocery_item.quantity_unit %>
+    </div>
+    <div class="show__attribute">
+      Price: £<%= @grocery_item.price %>
+    </div>
+    <div class="show__attribute">
+      Unit price: £<%= @grocery_item.unit_price %>
+    </div>
+    <div class="show__attribute">
+      Supermarket: <%= @grocery_item.supermarket.humanize %>
+    </div>
+    <div class="show__attribute">
+      Has plastic packaging: <%= @grocery_item.has_plastic_packaging %>
+    </div>
+  </div>
+</main>

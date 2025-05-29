@@ -1,0 +1,17 @@
+<%= turbo_frame_tag meal do %>
+  <div class="card">
+    <div class="card__summary">
+      <div class="card__header">
+        <%= link_to meal.name, 
+                    meal_path(meal),
+                    data: { turbo_frame: "_top" } %>
+        <%= link_to meal.user.name, 
+                    user_meals_path(meal.user),
+                    data: { turbo_frame: "_top" } %>
+      </div>
+      <div class="card__footer">
+        Posted: <%= formatted_post_date(meal.created_at) %>
+      </div>
+    </div>
+  </div>
+<% end %>

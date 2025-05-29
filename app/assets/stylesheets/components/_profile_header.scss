@@ -1,0 +1,21 @@
+.profile_header {
+  gap: var(--space-s);
+  margin: var(--space-s) 0;
+  color: var(--color-primary);
+
+  &__nav {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: var(--space-s);
+  }
+
+  &__title_div {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    color: var(--color-primary);
+    margin: 0 var(--space-s);
+  }
+}

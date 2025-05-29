@@ -1,0 +1,26 @@
+first:
+  name: First meal
+  # calories: 400
+  # protein: 15
+  # carbs: 70
+  # fat: 20
+  # meal_time: "19/03/2024 08:00"
+  user: firstuser
+
+second:
+  name: Second meal
+  # calories: 500
+  # protein: 20
+  # carbs: 93
+  # fat: 10
+  # meal_time: "19/03/2024 12:30"
+  user: firstuser
+
+third:
+  name: Third meal
+  # calories: 700
+  # protein: 50
+  # carbs: 80
+  # fat: 32
+  # meal_time: "19/03/2024 19:00"
+  user: firstuser

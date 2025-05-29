@@ -1,0 +1,37 @@
+<div data-controller="meal">
+  <%= simple_form_for meal, html: { class: "meal form" } do |f| %>
+    <% if meal.errors.any? %>
+      <div class="error-message">
+        <%= meal.errors.full_messages.to_sentence.capitalize %>
+      </div>
+    <% end %>
+
+    <div data-meal-target="formPage" class="form__page">
+      <div class="form__row">
+        <div class="simple_form_field form__row-item">
+          <%= f.input :name, 
+              input_html: { autofocus: true } %>
+        </div>
+      </div>
+
+      <div data-meal-target="mealIngredientFields">
+        <%= f.simple_fields_for :meal_ingredients do |mi| %>
+          <%= render 'meal_ingredient_fields', include_labels: true, f: mi %>
+        <% end %>
+      </div>
+    </div>
+
+    <button data-meal-target="addIngredientBtn" type="button" data-action="meal#addIngredient" class="btn btn--light">Add ingredient</button>
+    <%= link_to "Cancel", (@meal.persisted? ? meal_path(@meal) : meals_path), class: "btn btn--light" %>
+    <%= f.submit class: "btn btn--secondary" %>
+  <% end %>
+
+  <div data-meal-target="template" style="display: none;">
+    <%= simple_form_for Meal.new do |form| %>
+      <% form.object.meal_ingredients.build %>
+      <%= form.simple_fields_for :meal_ingredients, MealIngredient.new, child_index: "NEW_RECORD" do |mi| %>
+        <%= render 'meal_ingredient_fields', include_labels: false, f: mi %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

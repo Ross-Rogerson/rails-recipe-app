@@ -1,0 +1,33 @@
+<div data-meal-target="ingredientRow" class="form__row">
+  <div class="simple_form_field form__row-item">
+    <%= f.input :ingredient_id, 
+      label: include_labels ? "Ingredients" : false,
+      collection: Ingredient.all,
+      input_html: { class: "form__select" },
+      prompt: "Please select...",
+      required: true %>
+  </div>
+  <div class="simple_form_field form__row-item">
+    <% if include_labels %>
+      <label class="form__label" for="grocery_item_quantity">
+        Quantity <abbr title="required">*</abbr>
+      </label>
+    <% end %>
+    <div class="form__qty__fields">
+      <%= f.input :quantity, 
+          wrapper: false, 
+          label: false, 
+          input_html: { class: 'form__qty__input' } %>
+      <%= f.input :quantity_unit, 
+          wrapper: false, 
+          label: false, 
+          collection: MealIngredient.quantity_units.map{|k, v| [k, k]}, 
+          input_html: { class: "form__select form__qty__select" }, 
+          prompt: "-" %> 
+    </div>
+  </div>
+  <%= f.hidden_field :_destroy %>
+  <button data-meal-target="removeIngredientBtn" type="button" data-action="meal#removeIngredient" class="btn btn--remove">
+    <i class="fa-solid fa-trash-can"></i>
+  </button>
+</div>

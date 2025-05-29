@@ -1,0 +1,4 @@
+<%# this line tells Turbo to prepend to the Turbo Frame with id meals the app/views/meals/_meal.html.erb partial %>
+<%= turbo_stream.prepend "meals", @meal %>
+<%# second line tells Turbo to update the Turbo Frame with id new_meal with empty content %>
+<%# turbo_stream.update Meal.new, "" %>

@@ -1,0 +1,12 @@
+<%= turbo_stream_from "meals" %>
+<main class="container">
+  <div class="header">
+    <%= link_to "Create Meal",
+                new_meal_path,
+                class: "btn btn--secondary" %>
+  </div>
+
+  <%= turbo_frame_tag "meals" do %>
+    <%= render @meals %>
+  <% end %>
+</main>

@@ -1,0 +1,5 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to ingredients"), ingredients_path %>
+
+  <%= render "form", ingredient: @ingredient, include_grocery_item: false %>
+</main>

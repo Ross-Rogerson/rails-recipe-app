@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card__summary">
+    <div class="card__header">
+      <%= link_to grocery_item_display_name(grocery_item), 
+                  grocery_item_path(grocery_item) %>
+    </div>
+    <div class="card__footer">
+      Posted: <%= formatted_post_date(grocery_item.created_at) %>
+    </div>
+  </div>
+</div>

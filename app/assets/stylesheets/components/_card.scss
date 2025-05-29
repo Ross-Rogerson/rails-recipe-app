@@ -1,0 +1,32 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-s);
+
+  // background-color: var(--color-tertiary);
+  border-bottom: solid 0.5px var(--color-faint);
+  margin-bottom: var(--space-m);
+  padding: var(--space-xs);
+
+  @include media(tabletAndUp) {
+    padding: var(--space-xs) var(--space-m);
+  }
+
+  &__summary {
+    width: 100%;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-s);
+    min-width: 100%;
+  }
+
+  &__footer {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-s);
+  }
+}

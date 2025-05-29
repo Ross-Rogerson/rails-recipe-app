@@ -1,0 +1,155 @@
+<%= simple_form_for ingredient, url: (ingredient.new_record? && include_grocery_item) ? create_with_grocery_item_ingredients_path : nil, html: { class: "ingredient form", data: { controller: "ingredient" } } do |f| %>
+  <% if include_grocery_item %>
+    <div class="progress-bar__step-marker-container">
+      <div class="progress-bar__step-item">
+        <div data-ingredient-target="stepLabel" class="progress-bar__step-label">Ingredient</div>
+        <div data-ingredient-target="stepMarker" class="progress-bar__step-marker">1</div>
+      </div>
+      <hr data-ingredient-target="stepConnector" class="progress-bar__step-connector"/>
+      <div class="progress-bar__step-item">
+        <div data-ingredient-target="stepLabel" class="progress-bar__step-label">Grocery Item</div>
+        <div data-ingredient-target="stepMarker" class="progress-bar__step-marker">2</div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if ingredient.errors.any? %>
+    <div class="error-message">
+      <%= ingredient.errors.full_messages.to_sentence.capitalize %>
+    </div>
+  <% end %>
+
+  <div data-ingredient-target="formPage" class="form__page">
+    <div class="form__row">
+      <div class="simple_form_field form__row-item">
+        <%= f.input :name, 
+            label: "Ingredient Name", 
+            input_html: { autofocus: true } %>
+      </div>
+
+      <div class="simple_form_field form__row-item">
+        <%= f.input :calories_per_100g %>
+      </div>
+    </div>
+
+    <div class="form__row">
+      <div class="simple_form_field form__row-item">
+        <%= f.input :protein_per_100g %>
+      </div>
+
+      <div class="simple_form_field form__row-item">
+        <%= f.input :carbohydrates_per_100g %>
+      </div>
+    </div>
+    
+    <div class="form__row">
+      <div class="simple_form_field form__row-item">
+        <%= f.input :sugars_per_100g %>
+      </div>
+
+      <div class="simple_form_field form__row-item">
+        <%= f.input :saturated_fat_per_100g %>
+      </div>
+    </div>
+
+    <div class="form__row">
+      <div class="simple_form_field form__row-item">
+        <%= f.input :unsaturated_fat_per_100g %>
+      </div>
+
+      <div class="simple_form_field form__row-item">
+        <%= f.input :fibre_per_100g %>
+      </div>
+    </div>
+    
+    <div class="form__row">
+      <div class="simple_form_field form__row-item">
+        <%= f.input :salt_per_100g %>
+      </div>
+      
+      <div class="simple_form_field form__row-item">
+        <%= f.input :vegetarian,
+            as: :select,
+            label: "Suitable for vegatarians",
+            collection: [["No", false], ["Yes", true]], 
+            input_html: { class: "form__select" },
+            prompt: "Please select…",
+            required: true %>
+      </div>
+    </div>
+
+    <div class="form__row">
+      <div class="simple_form_field form__row-item">
+        <%= f.input :category, 
+            collection: Ingredient.categories.map{|k, v| [k.humanize, k]}, 
+            input_html: { class: "form__select" }, 
+            prompt: "Please select…" %> 
+      </div>
+    </div>
+  </div>
+
+  <% if include_grocery_item %>
+    <div data-ingredient-target="formPage" id="grocery_item_form_fields" class="visually-hidden form__page">
+      <%= f.simple_fields_for :grocery_items do |gi| %>
+        <div class="form__row">
+          <div class="simple_form_field form__row-item">
+            <%= gi.input :name, 
+                label: "Item name" %>
+          </div>
+          <div class="simple_form_field form__row-item">
+            <%= gi.input :supermarket, 
+                collection: GroceryItem.supermarkets.map{|k, v| [k.humanize, k]}, 
+                input_html: { class: "form__select" }, 
+                prompt: "Please select…" %>
+          </div>
+        </div>
+
+        <div class="form__row">
+          <div class="simple_form_field form__row-item form__qty">
+            <label class="form__label" for="grocery_item_quantity">
+              Quantity <abbr title="required">*</abbr>
+            </label>
+            <div class="form__qty__fields">
+              <%= gi.input :quantity, 
+                  wrapper: false, 
+                  label: false, 
+                  input_html: { class: 'form__qty__input' } %>
+              <%= gi.input :quantity_unit, 
+                  wrapper: false, 
+                  label: false, 
+                  collection: GroceryItem.quantity_units.map{|k, v| [k, k]}, 
+                  input_html: { class: "form__select form__qty__select" }, 
+                  prompt: "-" %> 
+            </div>
+          </div>
+          <div class="simple_form_field form__row-item">
+            <%= gi.input :price, 
+                label: "Price (£)" %>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="simple_form_field form__row-item">
+            <%= gi.input :has_plastic_packaging,
+                collection: [["No", false], ["Yes", true]],
+                input_html: { class: "form__select" },
+                prompt: "Please select…",
+                required: true %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if include_grocery_item %>
+    <div class="ingredient-form__navigation-buttons">
+      <button data-ingredient-target="prevBtn" type="button" data-action="ingredient#goPrevious" class="btn btn--light previous">< Previous</button>
+      <button data-ingredient-target="nextBtn" type="button" data-action="ingredient#goNext" class="btn btn--light next">Next ></button>
+    </div>
+  <% end %>
+
+  <%= link_to "Cancel", (@ingredient.persisted? ? ingredient_path(@ingredient) : ingredients_path), class: "btn btn--light" %>
+  <%= f.submit id: "ingredient_form_submit", 
+      class: "btn btn--secondary", 
+      disabled: include_grocery_item, 
+      data: { ingredient_target: "submitBtn" } %>
+<% end %>
