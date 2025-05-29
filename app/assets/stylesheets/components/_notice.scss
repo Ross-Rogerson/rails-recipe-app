@@ -1,0 +1,11 @@
+.notice {
+  &--success {
+    padding: var(--space-s) var(--space-m);
+    margin-bottom: var(--space-m);
+    border: 1px solid transparent;
+    border-radius: var(--space-xs);
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+  }
+}
