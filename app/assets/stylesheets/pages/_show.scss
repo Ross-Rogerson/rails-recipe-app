@@ -19,7 +19,7 @@
   }
 
   &__header {
-    padding: 0 var(--space-xl);
+    padding: var(--space-m) var(--space-xl);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,11 +35,8 @@
     margin-top: var(--space-s);
   }
 
-  &__meal-ingredient {
-    margin: var(--space-xs);
-  }
-
-  &__meal-nutrion-row {
-    margin: var(--space-xxs);
+  &__meal-ingredient,
+  &__meal-nutrition-value {
+    margin: var(--space-xs) var(--space-xxxs);
   }
 }

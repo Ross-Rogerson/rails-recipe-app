@@ -23,13 +23,20 @@
       <div class="show__meal-subheading">
         <h4>Meal Nutrition</h4>
       </div>
-      <div class="show__meal-nutrion-row">
-        <p>Calories: <%= @meal.calculate_nutritional_info %>kcal</p>
-      </div>
+      <% @meal_nutrition_values.each do |key, value| %>
+        <div class="show__meal-nutrition-value">
+          <%= "#{nutrition_label_for(key)}: #{value}" %>
+        </div>
+      <% end %>
+
       <div class="show__meal-subheading">
         <h4>Ingredients</h4>
       </div>
-      <%= render partial: "meal_ingredient", collection: @meal.meal_ingredients, as: :meal_ingredient %>
+      <% @meal.meal_ingredients.each do |meal_ingredient| %>
+        <div class="show__meal-ingredient">
+          <%= meal_ingredient_display_name(meal_ingredient) %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </main>

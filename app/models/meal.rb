@@ -18,11 +18,19 @@ class Meal < ApplicationRecord
   accepts_nested_attributes_for :meal_ingredients, allow_destroy: true
 
   def calculate_nutritional_info
-    meal_ingredients.includes(:ingredient).sum do |mi|
-      ingredient = mi.ingredient
-      next 0 unless ingredient && mi.quantity.present?
+    nutrition_attributes = %w[ calories_per_100g saturated_fat_per_100g 
+      unsaturated_fat_per_100g carbohydrates_per_100g sugars_per_100g 
+      fibre_per_100g protein_per_100g salt_per_100g]
 
-      (ingredient.calories_per_100g.to_f * (mi.quantity.to_f / 100.0)).round(2)
+    meal_ingredients.includes(:ingredient)
+
+    nutrition_attributes.index_with do |attr|
+      total = meal_ingredients.sum do |mi|
+        ingredient = mi.ingredient
+        next 0 unless ingredient && mi.quantity.present?
+        ingredient[attr].to_f * (mi.quantity.to_f / 100.0)
+      end
+      total.round(2)
     end
   end
 

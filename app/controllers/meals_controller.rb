@@ -13,6 +13,7 @@ class MealsController < ApplicationController
   end
 
   def show
+    @meal_nutrition_values = @meal.calculate_nutritional_info
   end
 
   def new
