@@ -5,7 +5,6 @@ class Meal < ApplicationRecord
   has_many :ingredients, through: :meal_ingredients
 
   validates :name, presence: true
-  # validates :calories, :calories, :saturated_fat, :unsaturated_fat, :carbohdrate, :sugars, :fibre, :protein, :salt, numericality: { greater_than_or_equal_to: 0, allow_blank: true }
   validates :meal_ingredients, length: {minimum: 1, message: 'at least 1 ingredient required.'}
   
   validate :no_duplicate_ingredients
@@ -37,7 +36,6 @@ class Meal < ApplicationRecord
         next 0 unless ingredient && mi.quantity.present?
         ingredient[ingredient_attr].to_f * (mi.quantity.to_f / 100.0)
       end
-        Rails.logger.debug "self[meal_attr] #{meal_attr} #{self[meal_attr]}"
       self[meal_attr] = (total / self.portions).round(2)
     end
   end

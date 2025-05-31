@@ -14,6 +14,8 @@ class Ingredient < ApplicationRecord
 
   accepts_nested_attributes_for :grocery_items, reject_if: :all_blank
 
+  after_save :update_meal_nutritional_info, if: :saved_change_to_any_nutrient?
+
   scope :by_created_at, -> { order(created_at: :desc) }
 
   enum :category, { fruit: 0, vegetables: 1, meat: 2, fish: 3, eggs_and_dairy: 4, beans_and_pulses: 5, herbs_and_spices: 6, other: 7 }
@@ -26,5 +28,20 @@ class Ingredient < ApplicationRecord
 
   def require_grocery_item!
     @require_grocery_item = true
+  end
+
+  def saved_change_to_any_nutrient?
+    saved_change_to_calories_per_100g? ||
+    saved_change_to_saturated_fat_per_100g? ||
+    saved_change_to_unsaturated_fat_per_100g? ||
+    saved_change_to_carbohydrates_per_100g? ||
+    saved_change_to_sugars_per_100g? ||
+    saved_change_to_fibre_per_100g? ||
+    saved_change_to_protein_per_100g? ||
+    saved_change_to_salt_per_100g?
+  end
+
+  def update_meal_nutritional_info
+    UpdateMealNutritionJob.perform_later(id)
   end
 end

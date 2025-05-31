@@ -26,7 +26,7 @@
       
       <% nutrition_labels.each do |key, label| %>
         <div class="show__meal-nutrition-value">
-          <%= "#{label}: #{@meal[key]}" %>
+          <%= "#{label}: #{@meal.public_send(key)}" %>
         </div>
       <% end %>
 
