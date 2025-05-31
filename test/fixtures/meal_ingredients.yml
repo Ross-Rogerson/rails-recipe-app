@@ -1,0 +1,5 @@
+first:
+  quantity: 700
+  quantity_unit: "g"
+  meal: firstmeal
+  ingredient: firstingredient

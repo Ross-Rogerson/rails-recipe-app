@@ -13,6 +13,11 @@
               input_html: { autofocus: true } %>
         </div>
       </div>
+      <div class="form__row">
+        <div class="simple_form_field form__row-item">
+          <%= f.input :portions %>
+        </div>
+      </div>
 
       <div data-meal-target="mealIngredientFields">
         <%= f.simple_fields_for :meal_ingredients do |mi| %>

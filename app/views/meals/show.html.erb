@@ -23,9 +23,10 @@
       <div class="show__meal-subheading">
         <h4>Meal Nutrition</h4>
       </div>
-      <% @meal_nutrition_values.each do |key, value| %>
+      
+      <% nutrition_labels.each do |key, label| %>
         <div class="show__meal-nutrition-value">
-          <%= "#{nutrition_label_for(key)}: #{value}" %>
+          <%= "#{label}: #{@meal[key]}" %>
         </div>
       <% end %>
 

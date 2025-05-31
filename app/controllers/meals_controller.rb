@@ -13,7 +13,6 @@ class MealsController < ApplicationController
   end
 
   def show
-    @meal_nutrition_values = @meal.calculate_nutritional_info
   end
 
   def new
@@ -54,7 +53,7 @@ class MealsController < ApplicationController
   end
 
   def meal_params
-    params.require(:meal).permit(:name, meal_ingredients_attributes: [
+    params.require(:meal).permit(:name, :portions, meal_ingredients_attributes: [
       :ingredient_id, :quantity, :quantity_unit, :_destroy, :id])
   end
 

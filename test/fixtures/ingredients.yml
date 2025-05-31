@@ -1,0 +1,13 @@
+firstingredient:
+  name: "Mushrooms"
+  calories_per_100g: 8.00
+  saturated_fat_per_100g: 0.20
+  unsaturated_fat_per_100g: 0.00
+  carbohydrates_per_100g: 0.30
+  sugars_per_100g: 0.30
+  fibre_per_100g: 0.70
+  protein_per_100g: 1.00
+  salt_per_100g: 0.01
+  vegetarian: true
+  category: "vegetables"
+  user: firstuser

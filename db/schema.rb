@@ -74,7 +74,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_29_070440) do
 
   create_table "meals", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "meal_time"
+    t.integer "portions", null: false
+    t.decimal "calories_per_portion", precision: 8, scale: 2, null: false
+    t.decimal "saturated_fat_per_portion", precision: 8, scale: 2, null: false
+    t.decimal "unsaturated_fat_per_portion", precision: 8, scale: 2, null: false
+    t.decimal "carbohydrates_per_portion", precision: 8, scale: 2, null: false
+    t.decimal "sugars_per_portion", precision: 8, scale: 2, null: false
+    t.decimal "fibre_per_portion", precision: 8, scale: 2, null: false
+    t.decimal "protein_per_portion", precision: 8, scale: 2, null: false
+    t.decimal "salt_per_portion", precision: 8, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false

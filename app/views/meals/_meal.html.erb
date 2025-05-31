@@ -1,17 +1,28 @@
 <%= turbo_frame_tag meal do %>
   <div class="card">
-    <div class="card__summary">
-      <div class="card__header">
-        <%= link_to meal.name, 
-                    meal_path(meal),
-                    data: { turbo_frame: "_top" } %>
-        <%= link_to meal.user.name, 
-                    user_meals_path(meal.user),
-                    data: { turbo_frame: "_top" } %>
+    <div class="card__header">
+      <%= link_to meal.name, 
+                  meal_path(meal),
+                  data: { turbo_frame: "_top" } %>
+      <%= link_to meal.user.name, 
+                  user_meals_path(meal.user),
+                  data: { turbo_frame: "_top" } %>
+    </div>
+    <div class="card__body">
+      <div class="card__info">
+        <div class="card__summary__item">
+          <%= "Portions: #{meal.portions}" %>
+        </div>
+        <div class="card__summary__item">
+          <%= "Calories: #{meal.calories_per_portion}" %>
+        </div>
+        <div class="card__summary__item">
+          <%= "Protein: #{meal.protein_per_portion}g" %>
+        </div>
       </div>
-      <div class="card__footer">
-        Posted: <%= formatted_post_date(meal.created_at) %>
-      </div>
+    </div>
+    <div class="card__footer">
+      Posted: <%= formatted_post_date(meal.created_at) %>
     </div>
   </div>
 <% end %>

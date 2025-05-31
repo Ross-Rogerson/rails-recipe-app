@@ -10,6 +10,8 @@ class Meal < ApplicationRecord
   
   validate :no_duplicate_ingredients
 
+  before_save :calculate_nutritional_info
+
   scope :by_created_at, -> { order(created_at: :desc) }
 
   broadcasts_to ->(meal) { "meals" }, inserts_by: :prepend
@@ -17,20 +19,26 @@ class Meal < ApplicationRecord
 
   accepts_nested_attributes_for :meal_ingredients, allow_destroy: true
 
+  INGREDIENT_TO_MEAL_NUTRITION_MAP = {
+    "calories_per_100g" => "calories_per_portion",
+    "saturated_fat_per_100g" => "saturated_fat_per_portion",
+    "unsaturated_fat_per_100g" => "unsaturated_fat_per_portion",
+    "carbohydrates_per_100g" => "carbohydrates_per_portion",
+    "sugars_per_100g" => "sugars_per_portion",
+    "fibre_per_100g" => "fibre_per_portion",
+    "protein_per_100g" => "protein_per_portion",
+    "salt_per_100g" => "salt_per_portion"
+  }.freeze
+
   def calculate_nutritional_info
-    nutrition_attributes = %w[ calories_per_100g saturated_fat_per_100g 
-      unsaturated_fat_per_100g carbohydrates_per_100g sugars_per_100g 
-      fibre_per_100g protein_per_100g salt_per_100g]
-
-    meal_ingredients.includes(:ingredient)
-
-    nutrition_attributes.index_with do |attr|
+    INGREDIENT_TO_MEAL_NUTRITION_MAP.each do |ingredient_attr, meal_attr|
       total = meal_ingredients.sum do |mi|
         ingredient = mi.ingredient
         next 0 unless ingredient && mi.quantity.present?
-        ingredient[attr].to_f * (mi.quantity.to_f / 100.0)
+        ingredient[ingredient_attr].to_f * (mi.quantity.to_f / 100.0)
       end
-      total.round(2)
+        Rails.logger.debug "self[meal_attr] #{meal_attr} #{self[meal_attr]}"
+      self[meal_attr] = (total / self.portions).round(2)
     end
   end
 
@@ -39,7 +47,7 @@ class Meal < ApplicationRecord
     duplicates = ingredient_ids.select { |ingredient_id| ingredient_ids.count(ingredient_id) > 1 }.uniq
 
     if duplicates.any?
-      errors.add(:base, "Each ingredient should only be listed once per meal")
+      errors.add(:base, "Each ingredient should only be used once per meal")
     end
   end
 end
