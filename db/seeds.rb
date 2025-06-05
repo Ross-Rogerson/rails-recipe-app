@@ -3,6 +3,11 @@ firstuser = User.create!(
   password: "password"
 )
 
+seconduser = User.create!(
+  email: 'seconduser@email.com',
+  password: "password"
+)
+
 mushrooms = Ingredient.create!(
   name: "Chestnut Mushrooms",
   calories_per_100g: 8.00,

@@ -46,6 +46,7 @@ gem "simple_form", "~> 5.1.0"
 
 gem "devise"
 
+gem 'redis'
 gem 'sidekiq', '~> 7.1', '>= 7.1.2'
 
 group :development, :test do

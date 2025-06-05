@@ -29,7 +29,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["@hotwired/stimulus", "npm:3.2.2"],\
-          ["@hotwired/turbo-rails", "npm:8.0.13"],\
+          ["@hotwired/turbo-rails", "npm:8.0.16"],\
           ["app", "workspace:."],\
           ["esbuild", "npm:0.25.2"],\
           ["sass", "npm:1.86.3"]\
@@ -281,12 +281,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@hotwired/turbo-rails", [\
-      ["npm:8.0.13", {\
-        "packageLocation": "../../../.yarn/berry/cache/@hotwired-turbo-rails-npm-8.0.13-799482f0b1-10c0.zip/node_modules/@hotwired/turbo-rails/",\
+      ["npm:8.0.16", {\
+        "packageLocation": "../../../.yarn/berry/cache/@hotwired-turbo-rails-npm-8.0.16-ce2025e187-10c0.zip/node_modules/@hotwired/turbo-rails/",\
         "packageDependencies": [\
           ["@hotwired/turbo", "npm:8.0.13"],\
-          ["@hotwired/turbo-rails", "npm:8.0.13"],\
-          ["@rails/actioncable", "npm:7.2.201"]\
+          ["@hotwired/turbo-rails", "npm:8.0.16"],\
+          ["@rails/actioncable", "npm:8.0.200"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -503,10 +503,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@rails/actioncable", [\
-      ["npm:7.2.201", {\
-        "packageLocation": "../../../.yarn/berry/cache/@rails-actioncable-npm-7.2.201-b1e74f21b1-10c0.zip/node_modules/@rails/actioncable/",\
+      ["npm:8.0.200", {\
+        "packageLocation": "../../../.yarn/berry/cache/@rails-actioncable-npm-8.0.200-c43f2ac86d-10c0.zip/node_modules/@rails/actioncable/",\
         "packageDependencies": [\
-          ["@rails/actioncable", "npm:7.2.201"]\
+          ["@rails/actioncable", "npm:8.0.200"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -567,7 +567,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["@hotwired/stimulus", "npm:3.2.2"],\
-          ["@hotwired/turbo-rails", "npm:8.0.13"],\
+          ["@hotwired/turbo-rails", "npm:8.0.16"],\
           ["app", "workspace:."],\
           ["esbuild", "npm:0.25.2"],\
           ["sass", "npm:1.86.3"]\
