@@ -11,14 +11,17 @@
 @import "components/error_message";
 @import "components/notice";
 @import "components/form";
+@import "components/meal";
 @import "components/navbar";
 @import "components/_profile_header";
 @import "components/_progress_bar";
+@import "components/file_input";
 @import "components/visually_hidden";
 
 // Pages
 @import "pages/show";
 @import "pages/ingredient_form";
+@import "pages/index";
 
 // Layouts
 @import "layouts/container";

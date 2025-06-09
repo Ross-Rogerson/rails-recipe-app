@@ -6,7 +6,7 @@
                 class: "btn btn--secondary" %>
   </div>
 
-  <%= turbo_frame_tag "meals" do %>
+  <%= turbo_frame_tag "meals", class: "index" do %>
     <%= render @meals %>
   <% end %>
 </main>

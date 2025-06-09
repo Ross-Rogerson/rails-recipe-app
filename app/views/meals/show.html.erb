@@ -18,6 +18,11 @@
         </div>
       <% end %>
     </div>
+    <% if @meal.image.attached? %>
+      <div class="show__image">
+          <%= image_tag @meal.image.variant(resize_to_fill: [1000, 400]).processed %>
+      </div>
+    <% end %>
 
     <div class="show__body">
       <div class="show__meal-subheading">
