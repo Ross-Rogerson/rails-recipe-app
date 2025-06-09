@@ -18,6 +18,21 @@
           <%= f.input :portions %>
         </div>
       </div>
+      <div class="form__row form__row-item form__image">
+        <label class="form__label" for="grocery_item_quantity">
+          Image
+        </label>
+        <div class="file-input" data-controller="file-input">
+          <label for="file-input" data-file-input-target="fileInputLabel" class="btn btn-primary file-input__label">
+            <%= @meal.image.attached? ? @meal.image.filename.to_s : "Choose file" %>
+          </label>
+          <%= f.input_field :image, as: :file, class: "visually-hidden", id: "file-input", 
+            data: {
+              file_input_target: "fileInput",
+              action: "file-input#updateFilename"
+              } %>
+        </div>
+      </div>
 
       <div data-meal-target="mealIngredientFields">
         <%= f.simple_fields_for :meal_ingredients do |mi| %>

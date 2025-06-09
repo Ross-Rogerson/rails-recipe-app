@@ -4,6 +4,8 @@ class Meal < ApplicationRecord
   has_many :meal_ingredients, dependent: :destroy
   has_many :ingredients, through: :meal_ingredients
 
+  has_one_attached :image
+
   validates :name, presence: true
   validates :meal_ingredients, length: {minimum: 1, message: 'at least 1 ingredient required.'}
   

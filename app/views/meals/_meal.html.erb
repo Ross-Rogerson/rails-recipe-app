@@ -1,6 +1,6 @@
 <%= turbo_frame_tag meal do %>
-  <div class="card">
-    <div class="card__header">
+  <div class="meal__card">
+    <div class="meal__card__header">
       <%= link_to meal.name, 
                   meal_path(meal),
                   data: { turbo_frame: "_top" } %>
@@ -8,20 +8,48 @@
                   user_meals_path(meal.user),
                   data: { turbo_frame: "_top" } %>
     </div>
-    <div class="card__body">
-      <div class="card__info">
-        <div class="card__summary__item">
+    <div class="meal__card__image">
+      <% if meal.image.attached? %>
+        <%= image_tag meal.image.variant(resize_to_fill: [500, 500, crop: :centre]).processed %>
+      <% else %>
+        <%= "No image available" %>
+      <% end %>
+    </div>
+    <div class="meal__card__info">
+      <div class="meal__card__info_column">
+        <div class="">
           <%= "Portions: #{meal.portions}" %>
         </div>
-        <div class="card__summary__item">
+      </div>
+      <div class="meal__card__info_column">
+        <div class="">
           <%= "Calories: #{meal.calories_per_portion}" %>
         </div>
-        <div class="card__summary__item">
+        <div class="">
           <%= "Protein: #{meal.protein_per_portion}g" %>
         </div>
       </div>
+
+      <div class="meal__card__info_column">
+        <div class="">
+          <%= "Calories: #{meal.calories_per_portion}" %>
+        </div>
+        <div class="">
+          <%= "Protein: #{meal.protein_per_portion}g" %>
+        </div>
+      </div>
+
+
+      <div class="meal__card__info_column">
+        <div class="">
+          <%= "Calories: #{meal.fibre_per_portion}" %>
+        </div>
+        <div class="">
+          <%= "Protein: #{meal.carbohydrates_per_portion}g" %>
+        </div>
+      </div>
     </div>
-    <div class="card__footer">
+    <div class="meal__card__footer">
       Posted: <%= formatted_post_date(meal.created_at) %>
     </div>
   </div>
