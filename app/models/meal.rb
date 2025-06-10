@@ -6,8 +6,9 @@ class Meal < ApplicationRecord
 
   has_one_attached :image
 
-  validates :name, presence: true
+  validates :name, :portions, presence: true
   validates :meal_ingredients, length: {minimum: 1, message: 'at least 1 ingredient required.'}
+  validates :portions, numericality: { greater_than_or_equal_to: 1 }
   
   validate :no_duplicate_ingredients
 
