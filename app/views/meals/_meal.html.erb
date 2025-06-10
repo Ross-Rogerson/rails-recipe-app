@@ -32,20 +32,20 @@
 
       <div class="meal__card__info_column">
         <div class="">
-          <%= "Calories: #{meal.calories_per_portion}" %>
+          <%= "Carbohydrates: #{meal.carbohydrates_per_portion}g" %>
         </div>
         <div class="">
-          <%= "Protein: #{meal.protein_per_portion}g" %>
+          <%= "Fat: #{meal.saturated_fat_per_portion + meal.unsaturated_fat_per_portion}g" %>
         </div>
       </div>
 
 
       <div class="meal__card__info_column">
         <div class="">
-          <%= "Calories: #{meal.fibre_per_portion}" %>
+          <%= "Fibre: #{meal.fibre_per_portion}g" %>
         </div>
         <div class="">
-          <%= "Protein: #{meal.carbohydrates_per_portion}g" %>
+          <%= "Salt: #{meal.salt_per_portion}g" %>
         </div>
       </div>
     </div>
